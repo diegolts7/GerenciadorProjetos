@@ -6,8 +6,6 @@ const DivLinks = styled.div`
   gap: 1.5rem;
 
   a {
-    color: aliceblue;
-    text-decoration: none;
     font-weight: bold;
 
     &:hover {

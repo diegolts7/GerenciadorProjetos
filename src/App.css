@@ -5,5 +5,5 @@
   min-height: 100vh;
 }
 .corpo {
-  flex: 1;
+  min-height: 100vh;
 }

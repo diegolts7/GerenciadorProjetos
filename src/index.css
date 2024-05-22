@@ -10,3 +10,22 @@
 body {
   background: aliceblue;
 }
+
+a {
+  text-decoration: none;
+  color: aliceblue;
+}
+
+::-webkit-scrollbar {
+  width: 7px; /* Largura da barra de rolagem */
+}
+
+/* Estilizando a pista (fundo) da barra de rolagem */
+::-webkit-scrollbar-track {
+  background: aliceblue; /* Cor de fundo da pista */
+}
+
+/* Estilizando o polegar (alça) da barra de rolagem */
+::-webkit-scrollbar-thumb {
+  background: grey; /* Cor do polegar */
+}

@@ -1,0 +1,46 @@
+.divNewProject {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 40vh;
+  margin: 0 auto;
+  gap: 1.5rem;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.form input,
+select {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid grey;
+  background-color: inherit;
+}
+
+.divNewProject p {
+  color: grey;
+}
+.divNewProject h1 {
+  font-size: 40px;
+  margin-top: 10vh;
+}
+
+.divNewProject button {
+  padding: 10px;
+  background-color: #111;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  transition: 0.3s;
+  color: aliceblue;
+  width: 14vh;
+}
+.divNewProject a {
+  margin: 0 auto;
+}
+
+.divNewProject button:hover {
+  color: grey;
+}

@@ -4,11 +4,14 @@ import { FaInstagram, FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
 const Rodape = styled.footer`
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 6vh;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 12vh;
   background-color: #292929;
   color: aliceblue;
-  gap: 2rem;
+  strong {
+    color: #daa520;
+  }
 `;
 
 const Icones = styled.div`
@@ -25,7 +28,7 @@ const Icones = styled.div`
 function Footer() {
   return (
     <Rodape>
-      <p>Costs@ 2024</p>
+      <strong>Costs @ 2024</strong>
       <Icones>
         <a target="_blank" href="https://www.google.com.br/?hl=pt-BR">
           <FaInstagram />
