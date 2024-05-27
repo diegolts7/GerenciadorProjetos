@@ -35,9 +35,6 @@ select {
   font-weight: bold;
   transition: 0.3s;
   color: aliceblue;
-  width: 14vh;
-}
-.divNewProject a {
   margin: 0 auto;
 }
 

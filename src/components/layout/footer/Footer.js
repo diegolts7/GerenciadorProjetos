@@ -9,6 +9,7 @@ const Rodape = styled.footer`
   height: 12vh;
   background-color: #292929;
   color: aliceblue;
+
   strong {
     color: #daa520;
   }

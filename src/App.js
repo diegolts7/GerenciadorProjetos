@@ -10,21 +10,20 @@ import NewProject from "./components/pages/newProject/NewProject";
 
 function App() {
   return (
-    <div className="conteiner">
-      <Router>
-        <Cabecalho />
-        <div className="corpo">
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/projetos" element={<Projetos />} />
-            <Route path="/empresa" element={<Empresa />} />
-            <Route path="/contato" element={<Contato />} />
-            <Route path="/new_project" element={<NewProject />} />
-          </Routes>
-        </div>
-        <Footer />
-      </Router>
-    </div>
+    <Router>
+      <Cabecalho />
+      <div className="corpo">
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/projetos" element={<Projetos />} />
+          <Route path="/empresa" element={<Empresa />} />
+          <Route path="/contato" element={<Contato />} />
+          <Route path="/new_project" element={<NewProject />} />
+          <Route path="/edit_project/:id" element={<p>EDITAR PROJETO</p>} />
+        </Routes>
+      </div>
+      <Footer />
+    </Router>
   );
 }
 
