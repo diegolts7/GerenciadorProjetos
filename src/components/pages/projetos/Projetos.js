@@ -50,7 +50,7 @@ function Projetos() {
 
     setflashMessageRemove(true);
 
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       setflashMessageRemove(false);
     }, 2000);
 

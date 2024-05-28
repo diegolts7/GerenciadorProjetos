@@ -1,12 +1,15 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import FormEdicao from "./FormEdicao";
 
 const DivEdicaoProject = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   margin-top: 10vh;
+  border-bottom: 1px solid #111;
+  padding-bottom: 5vh;
 `;
 
 const DivNomeProjeto = styled.div`
@@ -15,7 +18,7 @@ const DivNomeProjeto = styled.div`
   align-items: center;
   h1 {
     padding: 10px;
-    font-size: 45px;
+    font-size: 35px;
     color: #daa520;
     background-color: #111;
   }
@@ -25,7 +28,6 @@ const DivNomeProjeto = styled.div`
     border: none;
     color: aliceblue;
     font-weight: bold;
-    font-size: 18px;
     cursor: pointer;
   }
   button:hover {
@@ -34,14 +36,22 @@ const DivNomeProjeto = styled.div`
   }
 `;
 
+const Infos = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  gap: 0.8rem;
+`;
+
 const EdicaoProjeto = ({ projeto }) => {
+  const [edicaoProjetoAtiva, setEdicaoProjetoAtiva] = useState(false);
   function abrirEdicao() {
     setEdicaoProjetoAtiva(true);
   }
   function fecharEdicao() {
     setEdicaoProjetoAtiva(false);
   }
-  const [edicaoProjetoAtiva, setEdicaoProjetoAtiva] = useState(false);
+
   return (
     <DivEdicaoProject>
       <DivNomeProjeto>
@@ -52,6 +62,21 @@ const EdicaoProjeto = ({ projeto }) => {
           <button onClick={abrirEdicao}>Editar Projeto</button>
         )}
       </DivNomeProjeto>
+      {edicaoProjetoAtiva ? (
+        <FormEdicao projeto={projeto} methodFecharEdicao={fecharEdicao} />
+      ) : (
+        <Infos>
+          <p>
+            <strong>Categoria:</strong> {projeto.categoria}
+          </p>
+          <p>
+            <strong>Total do orçamento:</strong> R&#36; {projeto.orcamento}
+          </p>
+          <p>
+            <strong>Total utilizado:</strong> R&#36; 0
+          </p>
+        </Infos>
+      )}
     </DivEdicaoProject>
   );
 };
