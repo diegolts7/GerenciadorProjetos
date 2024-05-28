@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { FaCircle } from "react-icons/fa6";
 import { MdDeleteOutline, MdEdit } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 const DivCard = styled.div`
@@ -45,24 +45,50 @@ const BtnsCard = styled.div`
   }
 `;
 
-const CardProjeto = () => {
+const CardProjeto = ({ prop, deletar }) => {
   const navigate = useNavigate();
+
+  async function excluirProjeto() {
+    try {
+      let data = await fetch(`http://localhost:4000/posts/${prop.id}`, {
+        method: "DELETE",
+      });
+      deletar(prop.id);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function colorTipo() {
+    if (prop.categoria === "Infra") {
+      return "#964B00";
+    }
+    if (prop.categoria === "Desenvolvimento") {
+      return "darkblue";
+    }
+    if (prop.categoria === "Design") {
+      return "green";
+    }
+    if (prop.categoria === "Planejamento") {
+      return "yellow";
+    }
+  }
 
   return (
     <DivCard>
-      <TituloCard>Nome do projeto</TituloCard>
+      <TituloCard>{prop.nome}</TituloCard>
       <p>
-        <strong>Orçamento:</strong> R$000
+        <strong>Orçamento:</strong> R${prop.orcamento}
       </p>
       <TipoCard>
-        <FaCircle style={{ color: "blue" }} />
-        <p>Desenvolvimento</p>
+        <FaCircle style={{ color: colorTipo() }} />
+        <p>{prop.categoria}</p>
       </TipoCard>
       <BtnsCard>
-        <button onClick={() => navigate(`/edit_project/${uuidv4()}`)}>
+        <button onClick={() => navigate(`/edit_project/${prop.id}`)}>
           <MdEdit style={{ color: "darkblue" }} /> Editar
         </button>
-        <button>
+        <button onClick={excluirProjeto}>
           <MdDeleteOutline style={{ color: "red" }} /> Excluir
         </button>
       </BtnsCard>

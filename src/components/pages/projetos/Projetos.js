@@ -4,6 +4,7 @@ import MsgProjetoCriado from "./MsgProjetoCriado";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CardProjeto from "./CardProjeto";
+import MsgProjetoExcluido from "./MsgProjetoExcluido";
 
 const DivProjetos = styled.div`
   display: flex;
@@ -31,8 +32,34 @@ const ConteinerProjetos = styled.div`
 function Projetos() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [listaProjetos, setListaProjetos] = useState([]);
+  const [flashMessageRemove, setflashMessageRemove] = useState(false);
+
+  async function lerProjetos() {
+    try {
+      let data = await fetch("http://localhost:4000/posts");
+      let dados = await data.json();
+      setListaProjetos(dados);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function removerProjeto(id) {
+    setListaProjetos(listaProjetos.filter((projeto) => projeto.id !== id));
+
+    setflashMessageRemove(true);
+
+    const timer = setTimeout(() => {
+      setflashMessageRemove(false);
+    }, 2000);
+
+    //clearTimeout(timer);
+  }
 
   useEffect(() => {
+    lerProjetos();
+
     if (location.state) {
       const timer = setTimeout(() => {
         navigate(location.pathname, { replace: true });
@@ -49,17 +76,16 @@ function Projetos() {
         <BtnProjeto />
       </HeaderProjetos>
       {location.state && <MsgProjetoCriado />}
+      {flashMessageRemove && <MsgProjetoExcluido />}
       <ConteinerProjetos>
-        <CardProjeto />
-        <CardProjeto />
-        <CardProjeto />
-        <CardProjeto />
-        <CardProjeto />
-        <CardProjeto />
-        <CardProjeto />
-        <CardProjeto />
-        <CardProjeto />
-        <CardProjeto />
+        {listaProjetos.length > 0 &&
+          listaProjetos.map((projeto) => (
+            <CardProjeto
+              key={projeto.id}
+              prop={projeto}
+              deletar={removerProjeto}
+            />
+          ))}
       </ConteinerProjetos>
     </DivProjetos>
   );

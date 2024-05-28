@@ -3,17 +3,44 @@ import "./NewProject.css";
 import { useState } from "react";
 
 const NewProject = () => {
-  const [nomeProjeto, setNomeProjeto] = useState();
-  const [orcamentoProjeto, setOrcamentoProjeto] = useState();
-  const [categoriaProjeto, setCategoriaProjeto] = useState();
+  const [nomeProjeto, setNomeProjeto] = useState("");
+  const [orcamentoProjeto, setOrcamentoProjeto] = useState("");
+  const [categoriaProjeto, setCategoriaProjeto] = useState("");
   const navigate = useNavigate();
 
-  function pegarDados() {
-    console.log(orcamentoProjeto, nomeProjeto, categoriaProjeto);
-  }
+  async function salvaDados() {
+    if (
+      nomeProjeto !== "" &&
+      orcamentoProjeto !== "" &&
+      categoriaProjeto !== ""
+    ) {
+      let objProjeto = {
+        nome: nomeProjeto,
+        orcamento: orcamentoProjeto,
+        categoria: categoriaProjeto,
+      };
 
-  function redirect() {
-    navigate("/projetos", { state: true });
+      try {
+        const data = await fetch("http://localhost:4000/posts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(objProjeto),
+        });
+
+        if (data.ok) {
+          let dados = await data.json();
+          navigate("/projetos", { state: dados });
+        } else {
+          window.alert("Erro na criação de projeto");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      window.alert("Preencha os campos corretamente");
+    }
   }
 
   return (
@@ -29,7 +56,7 @@ const NewProject = () => {
         />
         <strong>Orçamento do projeto:</strong>
         <input
-          type="Numeber"
+          type="Number"
           placeholder="Insira o orçamento total"
           onChange={(e) => setOrcamentoProjeto(e.target.value)}
         />
@@ -42,7 +69,7 @@ const NewProject = () => {
           <option value="Planejamento">Planejamento</option>
         </select>
       </div>
-      <button onClick={redirect}>Criar Projeto</button>
+      <button onClick={salvaDados}>Criar Projeto</button>
     </div>
   );
 };
