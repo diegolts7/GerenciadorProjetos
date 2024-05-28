@@ -18,6 +18,7 @@ const NewProject = () => {
         nome: nomeProjeto,
         orcamento: orcamentoProjeto,
         categoria: categoriaProjeto,
+        servicos: [],
       };
 
       try {

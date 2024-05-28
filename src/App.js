@@ -7,6 +7,7 @@ import Projetos from "./components/pages/projetos/Projetos";
 import Empresa from "./components/pages/empresa/Empresa";
 import Contato from "./components/pages/contato/Contato";
 import NewProject from "./components/pages/newProject/NewProject";
+import EditProject from "./components/pages/editProject/EditProject";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <Route path="/empresa" element={<Empresa />} />
           <Route path="/contato" element={<Contato />} />
           <Route path="/new_project" element={<NewProject />} />
-          <Route path="/edit_project/:id" element={<p>EDITAR PROJETO</p>} />
+          <Route path="/edit_project/:id" element={<EditProject />} />
         </Routes>
       </div>
       <Footer />

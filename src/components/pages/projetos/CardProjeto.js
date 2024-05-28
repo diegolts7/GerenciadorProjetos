@@ -78,14 +78,16 @@ const CardProjeto = ({ prop, deletar }) => {
     <DivCard>
       <TituloCard>{prop.nome}</TituloCard>
       <p>
-        <strong>Orçamento:</strong> R${prop.orcamento}
+        <strong>Orçamento:</strong> R&#36; {prop.orcamento}
       </p>
       <TipoCard>
         <FaCircle style={{ color: colorTipo() }} />
         <p>{prop.categoria}</p>
       </TipoCard>
       <BtnsCard>
-        <button onClick={() => navigate(`/edit_project/${prop.id}`)}>
+        <button
+          onClick={() => navigate(`/edit_project/${prop.id}`, { state: prop })}
+        >
           <MdEdit style={{ color: "darkblue" }} /> Editar
         </button>
         <button onClick={excluirProjeto}>
