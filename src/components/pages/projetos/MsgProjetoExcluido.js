@@ -10,8 +10,8 @@ const DivMsgExcluida = styled.div`
   height: 7vh;
 `;
 
-const MsgProjetoExcluido = () => {
-  return <DivMsgExcluida>Projeto excluido com sucesso!</DivMsgExcluida>;
+const MsgProjetoExcluido = ({ mensagem }) => {
+  return <DivMsgExcluida>{mensagem}</DivMsgExcluida>;
 };
 
 export default MsgProjetoExcluido;

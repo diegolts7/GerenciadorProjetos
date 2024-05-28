@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import FormEdicao from "./FormEdicao";
+import MsgProjetoCriado from "../projetos/MsgProjetoCriado";
 
 const DivEdicaoProject = styled.div`
   display: flex;
@@ -45,6 +46,8 @@ const Infos = styled.div`
 
 const EdicaoProjeto = ({ projeto }) => {
   const [edicaoProjetoAtiva, setEdicaoProjetoAtiva] = useState(false);
+  const [flashMessageEdicao, setFlashMessageEdicao] = useState(false);
+
   function abrirEdicao() {
     setEdicaoProjetoAtiva(true);
   }
@@ -52,8 +55,18 @@ const EdicaoProjeto = ({ projeto }) => {
     setEdicaoProjetoAtiva(false);
   }
 
+  function MsgProjetoAtualizado() {
+    setFlashMessageEdicao(true);
+    setTimeout(() => {
+      setFlashMessageEdicao(false);
+    }, 2000);
+  }
+
   return (
     <DivEdicaoProject>
+      {flashMessageEdicao && (
+        <MsgProjetoCriado mensagem="Projeto atualizado!" />
+      )}
       <DivNomeProjeto>
         <h1>{projeto.nome}</h1>
         {edicaoProjetoAtiva ? (
@@ -63,7 +76,11 @@ const EdicaoProjeto = ({ projeto }) => {
         )}
       </DivNomeProjeto>
       {edicaoProjetoAtiva ? (
-        <FormEdicao projeto={projeto} methodFecharEdicao={fecharEdicao} />
+        <FormEdicao
+          projeto={projeto}
+          methodFecharEdicao={fecharEdicao}
+          MsgProjetoAtualizado={MsgProjetoAtualizado}
+        />
       ) : (
         <Infos>
           <p>

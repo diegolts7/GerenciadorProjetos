@@ -37,7 +37,7 @@ const Form = styled.div`
   }
 `;
 
-const FormEdicao = ({ projeto, methodFecharEdicao }) => {
+const FormEdicao = ({ projeto, methodFecharEdicao, MsgProjetoAtualizado }) => {
   const [nomeProjeto, setNomeProjeto] = useState(projeto.nome);
   const [orcamentoProjeto, setOrcamentoProjeto] = useState(
     `${projeto.orcamento}`
@@ -46,6 +46,7 @@ const FormEdicao = ({ projeto, methodFecharEdicao }) => {
 
   function concluirEdicao() {
     methodFecharEdicao();
+    MsgProjetoAtualizado();
   }
 
   return (
@@ -67,7 +68,7 @@ const FormEdicao = ({ projeto, methodFecharEdicao }) => {
         />
         <strong>Selecione a categoria:</strong>
         <select
-          value={projeto.categoria}
+          value={categoriaProjeto}
           onChange={(e) => setCategoriaProjeto(e.target.value)}
         >
           <option value="">Selecione uma opçao</option>

@@ -6,21 +6,21 @@ const Rodape = styled.footer`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 12vh;
+  height: 14vh;
   background-color: #292929;
   color: aliceblue;
   gap: 1rem;
 
   strong {
     color: #daa520;
-    font-size: 18px;
+    font-size: 20px;
   }
 `;
 
 const Icones = styled.div`
   display: flex;
-  font-size: 20px;
-  gap: 0.6rem;
+  font-size: 25px;
+  gap: 2.5rem;
 
   a {
     color: aliceblue;

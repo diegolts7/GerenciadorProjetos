@@ -75,8 +75,12 @@ function Projetos() {
         <h1>Meus Projetos</h1>
         <BtnProjeto />
       </HeaderProjetos>
-      {location.state && <MsgProjetoCriado />}
-      {flashMessageRemove && <MsgProjetoExcluido />}
+      {location.state && (
+        <MsgProjetoCriado mensagem="Projeto criado com sucesso!" />
+      )}
+      {flashMessageRemove && (
+        <MsgProjetoExcluido mensagem="Projeto excluido com sucesso!" />
+      )}
       <ConteinerProjetos>
         {listaProjetos.length > 0 &&
           listaProjetos.map((projeto) => (

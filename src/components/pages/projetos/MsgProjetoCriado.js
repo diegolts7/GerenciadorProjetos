@@ -9,8 +9,8 @@ const DivMsg = styled.div`
   height: 7vh;
 `;
 
-const MsgProjetoCriado = () => {
-  return <DivMsg>Projeto criado com sucesso!</DivMsg>;
+const MsgProjetoCriado = ({ mensagem }) => {
+  return <DivMsg>{mensagem}</DivMsg>;
 };
 
 export default MsgProjetoCriado;
