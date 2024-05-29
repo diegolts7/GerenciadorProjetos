@@ -72,7 +72,14 @@ const FormEdicao = ({
   }
 
   function concluirEdicao() {
-    if (nomeProjeto && orcamentoProjeto && categoriaProjeto) {
+    if (
+      nomeProjeto &&
+      orcamentoProjeto &&
+      categoriaProjeto &&
+      (nomeProjeto !== nome ||
+        categoriaProjeto !== categoria ||
+        orcamentoProjeto !== orcamento)
+    ) {
       methodFecharEdicao();
       MsgProjetoAtualizado();
       PUTrequest(id, nomeProjeto, orcamentoProjeto, categoriaProjeto, []);

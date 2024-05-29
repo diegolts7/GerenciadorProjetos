@@ -44,15 +44,19 @@ const Infos = styled.div`
   gap: 0.8rem;
 `;
 
-const EdicaoProjeto = ({ projeto }) => {
+const EdicaoProjeto = ({
+  states: {
+    listaServicos,
+    nomeProjeto,
+    categoriaProjeto,
+    orcamentoTotal,
+    totalUtilizado,
+    id,
+  },
+  atualizarProjeto,
+}) => {
   const [edicaoProjetoAtiva, setEdicaoProjetoAtiva] = useState(false);
   const [flashMessageEdicao, setFlashMessageEdicao] = useState(false);
-  const [nomeProjeto, setNomeProjeto] = useState(projeto.nome);
-  const [categoriaProjeto, setCategoriaProjeto] = useState(projeto.categoria);
-  const [orcamentoTotal, setOrcamentoTotal] = useState(projeto.orcamento);
-  const [totalUtilizado, setTotalUtilizado] = useState(0);
-
-  const { id } = useParams();
 
   function abrirEdicao() {
     setEdicaoProjetoAtiva(true);
@@ -66,12 +70,6 @@ const EdicaoProjeto = ({ projeto }) => {
     setTimeout(() => {
       setFlashMessageEdicao(false);
     }, 2000);
-  }
-
-  function atualizarProjeto(nome, orcamento, categoria) {
-    setNomeProjeto(nome);
-    setOrcamentoTotal(orcamento);
-    setCategoriaProjeto(categoria);
   }
 
   return (

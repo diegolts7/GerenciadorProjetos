@@ -2,9 +2,20 @@
   "posts": [
     {
       "nome": "Desenvolver uma logotipo",
-      "orcamento": "500",
       "categoria": "Design",
-      "servicos": [],
+      "orcamento": "500",
+      "servicos": [
+        {
+          "nome": "diegoo",
+          "orcamento": "200",
+          "descricao": "gcjcj"
+        },
+        {
+          "nome": "criar componente cabeçalho",
+          "orcamento": "30",
+          "descricao": "um componente simples de cabeçalho."
+        }
+      ],
       "id": "d67c"
     },
     {

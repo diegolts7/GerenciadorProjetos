@@ -36,6 +36,7 @@ const BtnCard = styled.button`
   font-weight: bold;
   font-size: 14px;
   cursor: pointer;
+  margin-top: auto;
 `;
 
 const CardServico = ({ prop }) => {

@@ -87,9 +87,7 @@ const CardProjeto = ({ prop, deletar }) => {
       <BtnsCard>
         <button
           onClick={() => {
-            navigate(`/edit_project/${prop.id}`, {
-              state: prop,
-            });
+            navigate(`/edit_project/${prop.id}`);
           }}
         >
           <MdEdit style={{ color: "darkblue" }} /> Editar

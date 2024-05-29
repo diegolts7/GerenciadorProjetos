@@ -3,6 +3,7 @@ import styled from "styled-components";
 import FormServico from "./FormServico";
 import MsgProjetoCriado from "../projetos/MsgProjetoCriado";
 import CardServico from "./CardServico";
+import { v4 as uuidv4 } from "uuid";
 
 const DivServico = styled.div`
   display: flex;
@@ -33,6 +34,7 @@ const DivAddServico = styled.div`
 const ConteinerServicosCadastrados = styled.div`
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
 `;
 
 const ConteinerAddServico = styled.div`
@@ -40,7 +42,18 @@ const ConteinerAddServico = styled.div`
   border-bottom: 1px solid #111;
 `;
 
-const Servicos = () => {
+const Servicos = ({
+  states: {
+    listaServicos,
+    setListaServicos,
+    nomeProjeto,
+    categoriaProjeto,
+    orcamentoTotal,
+    totalUtilizado,
+    setTotalUtilizado,
+  },
+  id,
+}) => {
   const [abrirConteinerServico, setAbrirConteinerServico] = useState(false);
   const [abrirAddServico, setAbrirAddServico] = useState(false);
   const [flashMessageAddServico, setFlashMessageAddServico] = useState(false);
@@ -72,17 +85,38 @@ const Servicos = () => {
             <button onClick={abrirServico}>Adicionar Serviço</button>
           )}
         </DivAddServico>
-        {abrirAddServico && <FormServico msgAddServico={msgAddServico} />}
+        {abrirAddServico && (
+          <FormServico
+            msgAddServico={msgAddServico}
+            states={{
+              listaServicos,
+              setListaServicos,
+              nomeProjeto,
+              categoriaProjeto,
+              orcamentoTotal,
+              totalUtilizado,
+              setTotalUtilizado,
+              id,
+            }}
+          />
+        )}
       </ConteinerAddServico>
       <h1>Serviços:</h1>
       <ConteinerServicosCadastrados>
-        <CardServico
-          prop={{
-            nome: "diego",
-            orcamento: 300,
-            descricao: "lorem is ssssssssssssssssssssssssssssssssssssssssssss",
-          }}
-        />
+        {listaServicos.length > 0 ? (
+          listaServicos.map((servico) => (
+            <CardServico
+              key={uuidv4()}
+              prop={{
+                nome: servico.nome,
+                orcamento: servico.orcamento,
+                descricao: servico.descricao,
+              }}
+            />
+          ))
+        ) : (
+          <p>Sem serviços cadastrados.</p>
+        )}
       </ConteinerServicosCadastrados>
     </DivServico>
   );

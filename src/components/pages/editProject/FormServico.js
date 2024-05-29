@@ -36,13 +36,54 @@ const Form = styled.div`
   }
 `;
 
-const FormServico = ({ msgAddServico }) => {
+const FormServico = ({
+  msgAddServico,
+  states: {
+    listaServicos,
+    setListaServicos,
+    nomeProjeto,
+    categoriaProjeto,
+    orcamentoTotal,
+    totalUtilizado,
+    setTotalUtilizado,
+    id,
+  },
+}) => {
   const [nomeServico, setNomeServico] = useState("");
   const [custoServico, setcustoServico] = useState("");
   const [descricaoServico, setdescricaoServico] = useState("");
 
-  async function addServico() {
-    msgAddServico();
+  async function PUTServico() {
+    if (
+      nomeServico &&
+      custoServico &&
+      Number(custoServico) + totalUtilizado <= Number(orcamentoTotal) &&
+      descricaoServico
+    ) {
+      let todosServiços = [...listaServicos];
+      todosServiços.push({
+        nome: nomeServico,
+        orcamento: custoServico,
+        descricao: descricaoServico,
+      });
+      setListaServicos(todosServiços);
+      let anterTotalUtilizado = totalUtilizado;
+      setTotalUtilizado((anterTotalUtilizado += Number(custoServico)));
+
+      await fetch(`http://localhost:4000/posts/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: nomeProjeto,
+          categoria: categoriaProjeto,
+          orcamento: orcamentoTotal,
+          servicos: todosServiços,
+        }),
+      });
+      msgAddServico();
+    } else {
+      window.alert("Erro ao adicionar serviço!");
+    }
   }
 
   return (
@@ -67,7 +108,7 @@ const FormServico = ({ msgAddServico }) => {
           onChange={(e) => setdescricaoServico(e.target.value)}
         />
       </Form>
-      <button onClick={addServico}>Finalizar Servico</button>
+      <button onClick={PUTServico}>Finalizar Servico</button>
     </DivForm>
   );
 };
