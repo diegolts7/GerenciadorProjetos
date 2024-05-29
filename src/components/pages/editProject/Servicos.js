@@ -2,14 +2,13 @@ import { useState } from "react";
 import styled from "styled-components";
 import FormServico from "./FormServico";
 import MsgProjetoCriado from "../projetos/MsgProjetoCriado";
+import CardServico from "./CardServico";
 
 const DivServico = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  border-bottom: 1px solid #111;
-  padding-top: 5vh;
-  padding-bottom: 5vh;
+  padding-top: 4vh;
 `;
 
 const DivAddServico = styled.div`
@@ -30,6 +29,17 @@ const DivAddServico = styled.div`
     transition: 0.3s;
   }
 `;
+
+const ConteinerServicosCadastrados = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const ConteinerAddServico = styled.div`
+  padding-bottom: 4vh;
+  border-bottom: 1px solid #111;
+`;
+
 const Servicos = () => {
   const [abrirConteinerServico, setAbrirConteinerServico] = useState(false);
   const [abrirAddServico, setAbrirAddServico] = useState(false);
@@ -53,15 +63,27 @@ const Servicos = () => {
       {flashMessageAddServico && (
         <MsgProjetoCriado mensagem="Serviço adicionado!" />
       )}
-      <DivAddServico>
-        <h1>Adicione um serviço:</h1>
-        {abrirAddServico ? (
-          <button onClick={fecharServico}>Fechar</button>
-        ) : (
-          <button onClick={abrirServico}>Adicionar Serviço</button>
-        )}
-      </DivAddServico>
-      {abrirAddServico && <FormServico msgAddServico={msgAddServico} />}
+      <ConteinerAddServico>
+        <DivAddServico>
+          <h1>Adicione um serviço:</h1>
+          {abrirAddServico ? (
+            <button onClick={fecharServico}>Fechar</button>
+          ) : (
+            <button onClick={abrirServico}>Adicionar Serviço</button>
+          )}
+        </DivAddServico>
+        {abrirAddServico && <FormServico msgAddServico={msgAddServico} />}
+      </ConteinerAddServico>
+      <h1>Serviços:</h1>
+      <ConteinerServicosCadastrados>
+        <CardServico
+          prop={{
+            nome: "diego",
+            orcamento: 300,
+            descricao: "lorem is ssssssssssssssssssssssssssssssssssssssssssss",
+          }}
+        />
+      </ConteinerServicosCadastrados>
     </DivServico>
   );
 };
