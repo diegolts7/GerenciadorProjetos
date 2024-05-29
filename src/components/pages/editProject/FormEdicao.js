@@ -37,16 +37,48 @@ const Form = styled.div`
   }
 `;
 
-const FormEdicao = ({ projeto, methodFecharEdicao, MsgProjetoAtualizado }) => {
-  const [nomeProjeto, setNomeProjeto] = useState(projeto.nome);
-  const [orcamentoProjeto, setOrcamentoProjeto] = useState(
-    `${projeto.orcamento}`
-  );
-  const [categoriaProjeto, setCategoriaProjeto] = useState(projeto.categoria);
+const FormEdicao = ({
+  states: {
+    nomeProjeto: nome,
+    orcamentoTotal: orcamento,
+    categoriaProjeto: categoria,
+    id,
+  },
+  atualizarProjeto,
+  methodFecharEdicao,
+  MsgProjetoAtualizado,
+}) => {
+  const [nomeProjeto, setNomeProjeto] = useState(nome);
+  const [orcamentoProjeto, setOrcamentoProjeto] = useState(orcamento);
+  const [categoriaProjeto, setCategoriaProjeto] = useState(categoria);
+
+  async function PUTrequest(id, nome, orcamento, categoria, servicos) {
+    try {
+      const requestBody = {
+        nome: nome,
+        orcamento: orcamento,
+        categoria: categoria,
+        servicos: servicos,
+      };
+      await fetch(`http://localhost:4000/posts/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody),
+      });
+      atualizarProjeto(nome, orcamento, categoria);
+    } catch (error) {
+      throw new Error("Erro ao atualizar projeto!");
+    }
+  }
 
   function concluirEdicao() {
-    methodFecharEdicao();
-    MsgProjetoAtualizado();
+    if (nomeProjeto && orcamentoProjeto && categoriaProjeto) {
+      methodFecharEdicao();
+      MsgProjetoAtualizado();
+      PUTrequest(id, nomeProjeto, orcamentoProjeto, categoriaProjeto, []);
+    } else {
+      window.alert("Preencha todos os campos");
+    }
   }
 
   return (

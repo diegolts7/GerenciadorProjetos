@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FaCircle } from "react-icons/fa6";
 import { MdDeleteOutline, MdEdit } from "react-icons/md";
@@ -50,7 +50,7 @@ const CardProjeto = ({ prop, deletar }) => {
 
   async function excluirProjeto() {
     try {
-      let data = await fetch(`http://localhost:4000/posts/${prop.id}`, {
+      await fetch(`http://localhost:4000/posts/${prop.id}`, {
         method: "DELETE",
       });
       deletar(prop.id);
@@ -86,7 +86,11 @@ const CardProjeto = ({ prop, deletar }) => {
       </TipoCard>
       <BtnsCard>
         <button
-          onClick={() => navigate(`/edit_project/${prop.id}`, { state: prop })}
+          onClick={() => {
+            navigate(`/edit_project/${prop.id}`, {
+              state: prop,
+            });
+          }}
         >
           <MdEdit style={{ color: "darkblue" }} /> Editar
         </button>
@@ -99,3 +103,5 @@ const CardProjeto = ({ prop, deletar }) => {
 };
 
 export default CardProjeto;
+
+/**/

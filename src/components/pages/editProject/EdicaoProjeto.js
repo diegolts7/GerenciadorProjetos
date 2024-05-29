@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import FormEdicao from "./FormEdicao";
@@ -47,6 +47,12 @@ const Infos = styled.div`
 const EdicaoProjeto = ({ projeto }) => {
   const [edicaoProjetoAtiva, setEdicaoProjetoAtiva] = useState(false);
   const [flashMessageEdicao, setFlashMessageEdicao] = useState(false);
+  const [nomeProjeto, setNomeProjeto] = useState(projeto.nome);
+  const [categoriaProjeto, setCategoriaProjeto] = useState(projeto.categoria);
+  const [orcamentoTotal, setOrcamentoTotal] = useState(projeto.orcamento);
+  const [totalUtilizado, setTotalUtilizado] = useState(0);
+
+  const { id } = useParams();
 
   function abrirEdicao() {
     setEdicaoProjetoAtiva(true);
@@ -62,13 +68,19 @@ const EdicaoProjeto = ({ projeto }) => {
     }, 2000);
   }
 
+  function atualizarProjeto(nome, orcamento, categoria) {
+    setNomeProjeto(nome);
+    setOrcamentoTotal(orcamento);
+    setCategoriaProjeto(categoria);
+  }
+
   return (
     <DivEdicaoProject>
       {flashMessageEdicao && (
         <MsgProjetoCriado mensagem="Projeto atualizado!" />
       )}
       <DivNomeProjeto>
-        <h1>{projeto.nome}</h1>
+        <h1>{nomeProjeto}</h1>
         {edicaoProjetoAtiva ? (
           <button onClick={fecharEdicao}>Fechar</button>
         ) : (
@@ -77,20 +89,21 @@ const EdicaoProjeto = ({ projeto }) => {
       </DivNomeProjeto>
       {edicaoProjetoAtiva ? (
         <FormEdicao
-          projeto={projeto}
+          states={{ nomeProjeto, orcamentoTotal, categoriaProjeto, id }}
+          atualizarProjeto={atualizarProjeto}
           methodFecharEdicao={fecharEdicao}
           MsgProjetoAtualizado={MsgProjetoAtualizado}
         />
       ) : (
         <Infos>
           <p>
-            <strong>Categoria:</strong> {projeto.categoria}
+            <strong>Categoria:</strong> {categoriaProjeto}
           </p>
           <p>
-            <strong>Total do orçamento:</strong> R&#36; {projeto.orcamento}
+            <strong>Total do orçamento:</strong> R&#36; {orcamentoTotal}
           </p>
           <p>
-            <strong>Total utilizado:</strong> R&#36; 0
+            <strong>Total utilizado:</strong> R&#36; {totalUtilizado}
           </p>
         </Infos>
       )}
