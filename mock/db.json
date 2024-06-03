@@ -1,26 +1,5 @@
 {
-  "posts": [
-    {
-      "nome": "Desenvolver uma logotipo",
-      "orcamento": "500",
-      "categoria": "Design",
-      "servicos": [
-        {
-          "nome": "contratar o design",
-          "orcamento": "300",
-          "descricao": "contratar o design para começar a fazer a logo."
-        }
-      ],
-      "id": "d67c"
-    },
-    {
-      "id": "f36e",
-      "nome": "Integrar plataforma de viagens para mobile",
-      "orcamento": "5000",
-      "categoria": "Desenvolvimento",
-      "servicos": []
-    }
-  ],
+  "posts": [],
   "comments": [
     {
       "id": "1",

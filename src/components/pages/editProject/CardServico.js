@@ -70,16 +70,19 @@ const CardServico = ({
         }
       });
 
-      await fetch(`http://localhost:4000/posts/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nome: nomeProjeto,
-          categoria: categoriaProjeto,
-          orcamento: orcamentoTotal,
-          servicos: listService,
-        }),
-      });
+      await fetch(
+        `https://gerenciador-projetos-server.vercel.app/posts/${id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            nome: nomeProjeto,
+            categoria: categoriaProjeto,
+            orcamento: orcamentoTotal,
+            servicos: listService,
+          }),
+        }
+      );
     } catch (error) {
       throw new Error("Erro ao deletar serviço!");
     }

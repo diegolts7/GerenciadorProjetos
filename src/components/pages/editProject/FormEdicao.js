@@ -61,11 +61,14 @@ const FormEdicao = ({
         categoria: categoria,
         servicos: servicos,
       };
-      await fetch(`http://localhost:4000/posts/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestBody),
-      });
+      await fetch(
+        `https://gerenciador-projetos-server.vercel.app/posts/${id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(requestBody),
+        }
+      );
       atualizarProjeto(nome, orcamento, categoria);
     } catch (error) {
       throw new Error("Erro ao atualizar projeto!");

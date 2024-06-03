@@ -22,7 +22,7 @@ const NewProject = () => {
       };
 
       try {
-        const data = await fetch("http://localhost:4000/posts", {
+        await fetch("https://gerenciador-projetos-server.vercel.app/posts", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -30,12 +30,7 @@ const NewProject = () => {
           body: JSON.stringify(objProjeto),
         });
 
-        if (data.ok) {
-          let dados = await data.json();
-          navigate("/projetos", { state: dados });
-        } else {
-          window.alert("Erro na criação de projeto");
-        }
+        navigate("/projetos", { state: true });
       } catch (error) {
         console.log(error);
       }

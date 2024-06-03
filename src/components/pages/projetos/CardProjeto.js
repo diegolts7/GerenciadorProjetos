@@ -50,9 +50,12 @@ const CardProjeto = ({ prop, deletar }) => {
 
   async function excluirProjeto() {
     try {
-      await fetch(`http://localhost:4000/posts/${prop.id}`, {
-        method: "DELETE",
-      });
+      await fetch(
+        `https://gerenciador-projetos-server.vercel.app/posts/${prop.id}`,
+        {
+          method: "DELETE",
+        }
+      );
       deletar(prop.id);
     } catch (error) {
       console.log(error);

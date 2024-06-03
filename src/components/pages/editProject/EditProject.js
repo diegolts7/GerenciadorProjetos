@@ -22,7 +22,9 @@ const EditProject = () => {
   const [totalUtilizado, setTotalUtilizado] = useState(0);
 
   async function GetProjeto() {
-    let data = await fetch(`http://localhost:4000/posts/${id}`);
+    let data = await fetch(
+      `https://gerenciador-projetos-server.vercel.app/posts/${id}`
+    );
     let dados = await data.json();
     setNomeProjeto(dados.nome);
     setCategoriaProjeto(dados.categoria);

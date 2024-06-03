@@ -71,16 +71,19 @@ const FormServico = ({
       let anterTotalUtilizado = totalUtilizado;
       setTotalUtilizado((anterTotalUtilizado += Number(custoServico)));
 
-      await fetch(`http://localhost:4000/posts/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nome: nomeProjeto,
-          categoria: categoriaProjeto,
-          orcamento: orcamentoTotal,
-          servicos: todosServiços,
-        }),
-      });
+      await fetch(
+        `https://gerenciador-projetos-server.vercel.app/posts/${id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            nome: nomeProjeto,
+            categoria: categoriaProjeto,
+            orcamento: orcamentoTotal,
+            servicos: todosServiços,
+          }),
+        }
+      );
       msgAddServico();
     } else {
       msgErroAddServico();

@@ -37,7 +37,9 @@ function Projetos() {
 
   async function lerProjetos() {
     try {
-      let data = await fetch("http://localhost:4000/posts");
+      let data = await fetch(
+        "https://gerenciador-projetos-server.vercel.app/posts"
+      );
       let dados = await data.json();
       setListaProjetos(dados);
     } catch (error) {
@@ -82,14 +84,17 @@ function Projetos() {
         <MsgProjetoExcluido mensagem="Projeto excluido com sucesso!" />
       )}
       <ConteinerProjetos>
-        {listaProjetos.length > 0 &&
+        {listaProjetos.length > 0 ? (
           listaProjetos.map((projeto) => (
             <CardProjeto
               key={projeto.id}
               prop={projeto}
               deletar={removerProjeto}
             />
-          ))}
+          ))
+        ) : (
+          <p>Sem projetos cadastrados...</p>
+        )}
       </ConteinerProjetos>
     </DivProjetos>
   );
