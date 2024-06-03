@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import FormServico from "./FormServico";
 import MsgProjetoCriado from "../projetos/MsgProjetoCriado";
+import MsgProjetoExcluido from "../projetos/MsgProjetoExcluido";
 import CardServico from "./CardServico";
 import { v4 as uuidv4 } from "uuid";
 
@@ -57,6 +58,8 @@ const Servicos = ({
   const [abrirConteinerServico, setAbrirConteinerServico] = useState(false);
   const [abrirAddServico, setAbrirAddServico] = useState(false);
   const [flashMessageAddServico, setFlashMessageAddServico] = useState(false);
+  const [flashMessageErroAddServico, setFlashMessageErroAddServico] =
+    useState(false);
 
   function abrirServico() {
     setAbrirAddServico(true);
@@ -71,10 +74,19 @@ const Servicos = ({
       setFlashMessageAddServico(false);
     }, 2000);
   }
+  function msgErroAddServico() {
+    setFlashMessageErroAddServico(true);
+    setTimeout(() => {
+      setFlashMessageErroAddServico(false);
+    }, 2000);
+  }
   return (
     <DivServico>
       {flashMessageAddServico && (
         <MsgProjetoCriado mensagem="Serviço adicionado!" />
+      )}
+      {flashMessageErroAddServico && (
+        <MsgProjetoExcluido mensagem="Erro ao adicionar serviço" />
       )}
       <ConteinerAddServico>
         <DivAddServico>
@@ -88,6 +100,7 @@ const Servicos = ({
         {abrirAddServico && (
           <FormServico
             msgAddServico={msgAddServico}
+            msgErroAddServico={msgErroAddServico}
             states={{
               listaServicos,
               setListaServicos,
@@ -111,6 +124,15 @@ const Servicos = ({
                 nome: servico.nome,
                 orcamento: servico.orcamento,
                 descricao: servico.descricao,
+              }}
+              states={{
+                listaServicos,
+                setListaServicos,
+                setTotalUtilizado,
+                nomeProjeto,
+                categoriaProjeto,
+                orcamentoTotal,
+                id,
               }}
             />
           ))

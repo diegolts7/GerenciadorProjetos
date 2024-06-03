@@ -2,28 +2,23 @@
   "posts": [
     {
       "nome": "Desenvolver uma logotipo",
-      "categoria": "Design",
       "orcamento": "500",
+      "categoria": "Design",
       "servicos": [
         {
-          "nome": "diegoo",
-          "orcamento": "200",
-          "descricao": "gcjcj"
-        },
-        {
-          "nome": "criar componente cabeçalho",
-          "orcamento": "30",
-          "descricao": "um componente simples de cabeçalho."
+          "nome": "contratar o design",
+          "orcamento": "300",
+          "descricao": "contratar o design para começar a fazer a logo."
         }
       ],
       "id": "d67c"
     },
     {
-      "nome": "Criar site",
-      "orcamento": "2000",
+      "id": "f36e",
+      "nome": "Integrar plataforma de viagens para mobile",
+      "orcamento": "5000",
       "categoria": "Desenvolvimento",
-      "servicos": [],
-      "id": "de74"
+      "servicos": []
     }
   ],
   "comments": [

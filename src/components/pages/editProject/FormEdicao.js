@@ -43,6 +43,7 @@ const FormEdicao = ({
     orcamentoTotal: orcamento,
     categoriaProjeto: categoria,
     id,
+    listaServicos,
   },
   atualizarProjeto,
   methodFecharEdicao,
@@ -82,7 +83,13 @@ const FormEdicao = ({
     ) {
       methodFecharEdicao();
       MsgProjetoAtualizado();
-      PUTrequest(id, nomeProjeto, orcamentoProjeto, categoriaProjeto, []);
+      PUTrequest(
+        id,
+        nomeProjeto,
+        orcamentoProjeto,
+        categoriaProjeto,
+        listaServicos
+      );
     } else {
       window.alert("Preencha todos os campos");
     }

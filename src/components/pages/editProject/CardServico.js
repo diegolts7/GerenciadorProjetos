@@ -39,7 +39,51 @@ const BtnCard = styled.button`
   margin-top: auto;
 `;
 
-const CardServico = ({ prop }) => {
+const CardServico = ({
+  prop,
+  states: {
+    listaServicos,
+    setListaServicos,
+    setTotalUtilizado,
+    nomeProjeto,
+    categoriaProjeto,
+    orcamentoTotal,
+    id,
+  },
+}) => {
+  async function deletaServico() {
+    try {
+      const objetoServico = { ...prop };
+      const listService = [...listaServicos];
+
+      listService.forEach((element, indice) => {
+        if (
+          element.descricao === objetoServico.descricao &&
+          element.nome === objetoServico.nome &&
+          element.orcamento === objetoServico.orcamento
+        ) {
+          listService.splice(indice, 1);
+          setListaServicos(listService);
+          setTotalUtilizado(
+            (prev) => Number(prev) - Number(objetoServico.orcamento)
+          );
+        }
+      });
+
+      await fetch(`http://localhost:4000/posts/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: nomeProjeto,
+          categoria: categoriaProjeto,
+          orcamento: orcamentoTotal,
+          servicos: listService,
+        }),
+      });
+    } catch (error) {
+      throw new Error("Erro ao deletar serviço!");
+    }
+  }
   return (
     <DivCard>
       <TituloCard>{prop.nome}</TituloCard>
@@ -51,7 +95,7 @@ const CardServico = ({ prop }) => {
         <strong>Descricao:</strong> {prop.descricao}
       </Descricao>
 
-      <BtnCard>
+      <BtnCard onClick={deletaServico}>
         <MdDeleteOutline style={{ color: "red" }} />
         Excluir
       </BtnCard>

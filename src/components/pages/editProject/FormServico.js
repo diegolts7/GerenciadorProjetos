@@ -38,6 +38,7 @@ const Form = styled.div`
 
 const FormServico = ({
   msgAddServico,
+  msgErroAddServico,
   states: {
     listaServicos,
     setListaServicos,
@@ -82,7 +83,7 @@ const FormServico = ({
       });
       msgAddServico();
     } else {
-      window.alert("Erro ao adicionar serviço!");
+      msgErroAddServico();
     }
   }
 

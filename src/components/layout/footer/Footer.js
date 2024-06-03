@@ -20,7 +20,7 @@ const Rodape = styled.footer`
 const Icones = styled.div`
   display: flex;
   font-size: 25px;
-  gap: 2.5rem;
+  gap: 1.5rem;
 
   a {
     color: aliceblue;

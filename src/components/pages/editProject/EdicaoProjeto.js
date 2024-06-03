@@ -87,7 +87,13 @@ const EdicaoProjeto = ({
       </DivNomeProjeto>
       {edicaoProjetoAtiva ? (
         <FormEdicao
-          states={{ nomeProjeto, orcamentoTotal, categoriaProjeto, id }}
+          states={{
+            nomeProjeto,
+            orcamentoTotal,
+            categoriaProjeto,
+            id,
+            listaServicos,
+          }}
           atualizarProjeto={atualizarProjeto}
           methodFecharEdicao={fecharEdicao}
           MsgProjetoAtualizado={MsgProjetoAtualizado}
