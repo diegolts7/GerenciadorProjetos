@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CardProjeto from "./CardProjeto";
 import MsgProjetoExcluido from "./MsgProjetoExcluido";
+import Loading from "../../../img/loading.svg";
 
 const DivProjetos = styled.div`
   display: flex;
@@ -29,11 +30,16 @@ const ConteinerProjetos = styled.div`
   gap: 1rem;
 `;
 
+const DivInfos = styled.div`
+  margin: 0 auto;
+`;
+
 function Projetos() {
   const location = useLocation();
   const navigate = useNavigate();
   const [listaProjetos, setListaProjetos] = useState([]);
   const [flashMessageRemove, setflashMessageRemove] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   async function lerProjetos() {
     try {
@@ -41,6 +47,7 @@ function Projetos() {
         "https://gerenciador-projetos-server.vercel.app/posts"
       );
       let dados = await data.json();
+      setIsLoading(false);
       setListaProjetos(dados);
     } catch (error) {
       console.log(error);
@@ -93,7 +100,17 @@ function Projetos() {
             />
           ))
         ) : (
-          <p>Sem projetos cadastrados...</p>
+          <>
+            {isLoading ? (
+              <DivInfos>
+                <img src={Loading} width="50px" />
+              </DivInfos>
+            ) : (
+              <DivInfos>
+                <p>Sem projetos cadastrados</p>
+              </DivInfos>
+            )}
+          </>
         )}
       </ConteinerProjetos>
     </DivProjetos>
