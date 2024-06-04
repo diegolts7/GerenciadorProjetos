@@ -21,6 +21,10 @@ const DivForm = styled.div`
   button:hover {
     color: grey;
   }
+
+  @media screen and (max-width: 501px) {
+    width: 100%;
+  }
 `;
 const Form = styled.div`
   display: flex;
@@ -34,6 +38,10 @@ const Form = styled.div`
     border: 1px solid grey;
     background-color: inherit;
     font-size: 15px;
+  }
+
+  @media screen and (max-width: 501px) {
+    margin-top: 3vh;
   }
 `;
 

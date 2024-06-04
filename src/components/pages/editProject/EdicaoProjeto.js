@@ -11,6 +11,10 @@ const DivEdicaoProject = styled.div`
   margin-top: 10vh;
   border-bottom: 1px solid #111;
   padding-bottom: 5vh;
+
+  @media screen and (max-width: 501px) {
+    margin-top: 5vh;
+  }
 `;
 
 const DivNomeProjeto = styled.div`
@@ -35,6 +39,12 @@ const DivNomeProjeto = styled.div`
     color: grey;
     transition: 0.3s;
   }
+
+  @media screen and (max-width: 501px) {
+    h1 {
+      font-size: 25px;
+    }
+  }
 `;
 
 const Infos = styled.div`
@@ -42,6 +52,10 @@ const Infos = styled.div`
   flex-direction: column;
   font-size: 20px;
   gap: 0.8rem;
+
+  @media screen and (max-width: 501px) {
+    font-size: 15px;
+  }
 `;
 
 const EdicaoProjeto = ({

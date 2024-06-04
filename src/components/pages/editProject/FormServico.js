@@ -5,7 +5,7 @@ const DivForm = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 70vh;
+  width: 60vh;
   margin: 0 auto;
   gap: 2rem;
   button {
@@ -20,6 +20,10 @@ const DivForm = styled.div`
   }
   button:hover {
     color: grey;
+  }
+
+  @media screen and (max-width: 501px) {
+    width: 100%;
   }
 `;
 const Form = styled.div`
