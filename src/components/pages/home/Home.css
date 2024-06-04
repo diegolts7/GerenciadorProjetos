@@ -29,3 +29,18 @@
   width: 450px;
   margin-top: auto;
 }
+
+@media screen and (max-width: 501px) {
+  .imageHome {
+    width: 350px;
+  }
+  .divHome {
+    width: 50vh;
+  }
+  .divHome h1 {
+    font-size: 30px;
+  }
+  .descricaoHome {
+    font-size: 12px;
+  }
+}
