@@ -11,6 +11,12 @@ const DivServico = styled.div`
   flex-direction: column;
   gap: 1rem;
   padding-top: 4vh;
+
+  @media screen and (max-width: 501px) {
+    h1 {
+      font-size: 25px;
+    }
+  }
 `;
 
 const DivAddServico = styled.div`
