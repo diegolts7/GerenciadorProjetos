@@ -36,8 +36,10 @@
   }
   .divHome {
     width: 50vh;
+    min-height: 85vh;
   }
   .divHome h1 {
+    margin-top: 10vh;
     font-size: 30px;
   }
   .descricaoHome {

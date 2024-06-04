@@ -15,6 +15,13 @@ const Rodape = styled.footer`
     color: #daa520;
     font-size: 20px;
   }
+
+  @media screen and (max-width: 501px) {
+    height: 12vh;
+    strong {
+      font-size: 18px;
+    }
+  }
 `;
 
 const Icones = styled.div`
@@ -25,6 +32,11 @@ const Icones = styled.div`
   a {
     color: aliceblue;
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 501px) {
+    font-size: 22px;
+    gap: 1rem;
   }
 `;
 

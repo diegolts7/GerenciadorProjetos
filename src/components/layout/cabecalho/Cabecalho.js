@@ -9,12 +9,21 @@ let DivCabecalho = styled.div`
   min-height: 10vh;
   background-color: #292929;
   color: aliceblue;
+  img {
+    height: 45px;
+  }
+
+  @media screen and (max-width: 501px) {
+    img {
+      display: none;
+    }
+  }
 `;
 
 function Cabecalho() {
   return (
     <DivCabecalho>
-      <img src={image} height="45px" />
+      <img src={image} />
       <Links />
     </DivCabecalho>
   );
